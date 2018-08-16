@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .our-expertise-height {
+            display: inline-block;
+            position: relative;
+            height: 500px;
+            width: 300px;
+        }
+        #tab_1 {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #d34848;
+            opacity: 0;
+        }
+        #tab_2 {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background-color: #524ebe;
+        }
+        #tab_3 {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background-color: #91f0aa;
+        }
+    </style>
+</head>
+<body>
+   <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <div class="section-content our-expertise-height">
+        <div id="tab_1" style="opacity: 1;"></div>
+        <div id="tab_2" style="opacity: 0;"></div>
+        <div id="tab_3" style="opacity: 0;"></div>
+    </div>
+    
+    <div id="status"></div>
+    <script>
+        
+        if ($('.our-expertise-height')) {
+            var relativeBlock = $('.our-expertise-height');
+            var counter = 1;
+            var block1 = $('#tab_1'),
+                block2 = $('#tab_2'),
+                block3 = $('#tab_3');
+            
+            relativeBlock.mouseover(function(){
+            relativeBlock.get( 0 ).addEventListener('wheel', function(e) {
+  if (e.deltaY < 0) {
+            if (counter > 1){
+                  counter--;
+                console.log(counter);
+                        }
+    document.getElementById('status').innerHTML = 'scrolling up';
+  }
+  if (e.deltaY > 0) {
+      if (counter < 6){
+                  counter++;
+                console.log(counter);
+                        }
+    document.getElementById('status').innerHTML = 'scrolling down';
+  }
+                block1.css('opacity', '0');
+                block2.css('opacity', '0');
+                block3.css('opacity', '0');
+                    
+                var displayableBlock = $('#tab_' + Math.ceil(counter/2));
+                console.log(displayableBlock);
+                displayableBlock.css('opacity', '1');
+})
+        })
+            
+            }
+    </script>
+</body>
+</html>
